@@ -18,12 +18,10 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-
-
 private:
     Ui::MainWindow *ui;
     QPushButton *button[9];
-    QToolButton *turnLabel;
+    //QToolButton *turnLabel;
     bool player1Turn;
     int amountOfTurns;
     char board[9];

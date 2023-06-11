@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+
 #include <QMessageBox> // https://doc.qt.io/qt-6/qmessagebox.html
 #include <QPixmap>
 
@@ -7,7 +8,6 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-
     ui->setupUi(this);
     prepareBoard();
    /* QObject::connect(ui->P1, SIGNAL(clicked()),this, SLOT(P1()));
@@ -54,9 +54,9 @@ void MainWindow::isWin()
 {
     char currentPlayer;
     if(player1Turn == 1){
-        currentPlayer = 'x';
+        currentPlayer = 'O';
     }
-    else currentPlayer = 'o';
+    else currentPlayer = 'X';
 
     if((board[0] == currentPlayer && board[1] == currentPlayer && board[2] == currentPlayer) ||
             (board[3] == currentPlayer && board[4] == currentPlayer && board[5] == currentPlayer) ||
@@ -66,11 +66,11 @@ void MainWindow::isWin()
             (board[0] == currentPlayer && board[1] == currentPlayer && board[6] == currentPlayer) ||
             (board[0] == currentPlayer && board[4] == currentPlayer && board[8] == currentPlayer) ||
             (board[2] == currentPlayer && board[4] == currentPlayer && board[6] == currentPlayer)){
-                QMessageBox::information(this,"Wygrywa gracz" + QString(currentPlayer));
+                QMessageBox::information(this,"Wynik","Wygrywa gracz " + QString(currentPlayer)); // czemu sypiesz bledami
                 turnOffButton();
     }
     else if(amountOfTurns == 9){ // cale pole zapelnione
-        QMessageBox::information(this,"Remis");
+        QMessageBox::information(this,"Wynik", "Remis"); //czemu sypiesz bleadmi // https://www.obliczeniowo.com.pl/908
         turnOffButton();
     }
 }
@@ -93,14 +93,15 @@ void MainWindow::turnOffButton()
 
 void MainWindow::changeTurnLabel()
 {
+    // do poprawy
     QLabel *buttonl = ui->TurnIcon;
     QPixmap pixmap;
     if(player1Turn == 1){
         //pixmap(":/img/xsmall.bmp");
-        QPixmap pixmap(":/img/xsmall.bmp");
+        QPixmap pixmap(":/img/img/osmall.bmp");
     }
     else{
-        QPixmap pixmap(":/img/osmall.bmp");
+        QPixmap pixmap(":/img/xsmall.bmp");
     }
 //    QIcon icon(pixmap);
 //    buttonl->setIcon(icon);
@@ -121,23 +122,34 @@ void MainWindow::buttonClicked()
 
     if(bIndex != -1 && board[bIndex] == ' '){
         if(player1Turn){
-            QPixmap pixmap(":/img/x.bmp");
+            QPixmap pixmap(":/img/img/o.bmp");
             QIcon icon(pixmap);
             buttonn->setIcon(icon);
             buttonn->setIconSize(pixmap.rect().size());
-            board[bIndex] = 'x';
+            board[bIndex] = 'O';
         }
         else{
-            QPixmap pixmap(":/img/o.bmp");
+            QPixmap pixmap(":/img/img/x.bmp");
             QIcon icon(pixmap);
             buttonn->setIcon(icon);
             buttonn->setIconSize(pixmap.rect().size());
-            board[bIndex] = 'o';
+            board[bIndex] = 'X';
         }
     }
     amountOfTurns++;
     isWin();
     player1Turn = !(player1Turn);
+    changeTurnLabel();
+}
+
+void MainWindow::newGameClicked()
+{
+    clear();
+    for(int i=0;i<9;i++){
+        button[i]->setEnabled(1);
+    }
+    player1Turn = 1;
+    amountOfTurns = 0;
     changeTurnLabel();
 }
 
