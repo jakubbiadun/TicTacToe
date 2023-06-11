@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>TicTacToe</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
@@ -248,7 +248,7 @@
          </font>
         </property>
         <property name="text">
-         <string/>
+         <string>Tura Gracza</string>
         </property>
         <property name="scaledContents">
          <bool>false</bool>
@@ -256,7 +256,7 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="TurnIcon">
         <property name="maximumSize">
          <size>
           <width>30</width>
@@ -275,7 +275,7 @@
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="newgame">
         <property name="text">
          <string>Nowa gra</string>
         </property>
