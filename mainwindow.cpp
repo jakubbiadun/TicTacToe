@@ -94,14 +94,15 @@ void MainWindow::turnOffButton()
 void MainWindow::changeTurnLabel()
 {
     // do poprawy
-    QLabel *buttonl = ui->TurnIcon;
-    QPixmap pixmap;
+    //QLabel *buttonl = ui->TurnIcon;
+   // QPixmap pixmap;
     if(player1Turn == 1){
-        //pixmap(":/img/xsmall.bmp");
         QPixmap pixmap(":/img/img/osmall.bmp");
+        ui->TurnIcon->setPixmap(pixmap);
     }
     else{
-        QPixmap pixmap(":/img/xsmall.bmp");
+        QPixmap pixmap(":/img/img/xsmall.bmp");
+        ui->TurnIcon->setPixmap(pixmap);
     }
 //    QIcon icon(pixmap);
 //    buttonl->setIcon(icon);
