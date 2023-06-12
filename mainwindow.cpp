@@ -65,7 +65,8 @@ void MainWindow::isWin()
             (board[2] == currentPlayer && board[5] == currentPlayer && board[8] == currentPlayer) ||
             (board[0] == currentPlayer && board[1] == currentPlayer && board[6] == currentPlayer) ||
             (board[0] == currentPlayer && board[4] == currentPlayer && board[8] == currentPlayer) ||
-            (board[2] == currentPlayer && board[4] == currentPlayer && board[6] == currentPlayer)){
+            (board[2] == currentPlayer && board[4] == currentPlayer && board[6] == currentPlayer) ||
+            (board[0] == currentPlayer && board[3] == currentPlayer && board[6] == currentPlayer)){
                 QMessageBox::information(this,"Wynik","Wygrywa gracz " + QString(currentPlayer)); // czemu sypiesz bledami
                 turnOffButton();
     }
